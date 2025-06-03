@@ -10,9 +10,9 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+//    @NotBlank
     private String name;
-    @NotBlank
+//    @NotBlank
     private String description;
     private boolean status;
     private int priority;
