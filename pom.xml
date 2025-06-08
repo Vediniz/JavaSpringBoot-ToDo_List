@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>3.2.8</spring-boot.version>
         <mysql.version>8.0.33</mysql.version>
@@ -100,7 +100,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- AssertJ (pra asserts estilosos) -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -209,7 +208,6 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin for running the application -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -221,11 +219,10 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <printSummary>true</printSummary>
-                    <useFile>false</useFile> <!-- Mostra no console, não só no arquivo -->
-                    <reportFormat>brief</reportFormat> <!-- Pode ser brief, plain, etc -->
+                    <useFile>false</useFile>
+                    <reportFormat>brief</reportFormat>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 </project>
