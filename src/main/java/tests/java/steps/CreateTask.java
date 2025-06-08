@@ -2,6 +2,7 @@ package tests.java.steps;
 
 import br.com.github.vediniz.entity.Todo;
 import br.com.github.vediniz.repository.TodoRepository;
+import static tests.java.steps.Utils.isNullOrBlank;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,21 +41,18 @@ public class CreateTask {
         System.out.println("Database cleaned");
     }
 
-    private boolean _isNullOrBlank(String s) {
-        return s == null || s.isBlank() || s.equalsIgnoreCase("null");
-    }
 
     @When("I create a task with the following details:")
     public void iCreateATaskWithTheFollowingDetails(DataTable dataTable) {
         Map<String, String> row = dataTable.asMaps().get(0);
 
         String name = row.get("name");
-        if (_isNullOrBlank(name)) {
+        if (isNullOrBlank(name)) {
             name = null;
         }
 
         String description = row.get("description");
-        if (_isNullOrBlank(description)) {
+        if (isNullOrBlank(description)) {
             description = null;
         }
 
@@ -91,7 +89,12 @@ public class CreateTask {
 
     @Then("the task list should contain a task with title {string}")
     public void theTaskListShouldContainTaskWithTitle(String expectedTitle) {
-        response.then().body("name", hasItem(expectedTitle));
+        Response getResponse = given()
+                .when()
+                .get(baseUrl);
+
+        getResponse.then()
+                .statusCode(200).body("name", hasItem(expectedTitle));
     }
 
     @Then("the task creation should fail with an error message {string}")
